@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <h3>Balance: ${{balance}}</h3>
+
     <AddExpense :categories="categories" @add-expense="addExpense($event)" />
+
     <h3>Expenses</h3>
     <div v-if="!expenses.length">No expenses yet</div>
     <ul class="expenses-list">
@@ -9,12 +11,18 @@
         <Expense :category="expense.category" :amount="expense.amount" :comment="expense.comment" />
       </li>
     </ul>
+
+    <div v-if="expenses.length">
+      <h3>Stats</h3>
+      <Stats :expenses="expenses" />
+    </div>
   </div>
 </template>
 
 <script>
 import AddExpense from './components/AddExpense.vue'
 import Expense from './components/Expense.vue'
+import Stats from './components/Stats.vue'
 
 const CATEGORY = {
   HOUSING: 'Housing',
@@ -28,7 +36,8 @@ export default {
   name: 'App',
   components: {
     AddExpense,
-    Expense
+    Expense,
+    Stats
   },
   data() {
     return {
@@ -40,7 +49,7 @@ export default {
   methods: {
     addExpense({category, amount, comment} = {}) {
       if (this.balance - amount > 0) {
-        this.expenses.push({category, amount, comment})
+        this.expenses.push({category, amount: +amount, comment})
         this.balance -= amount
       } else {
         // todo: show a warning about low balance

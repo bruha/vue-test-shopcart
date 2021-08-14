@@ -8,7 +8,7 @@
 export default {
   name: 'Expense',
   props: {
-    amount: String,
+    amount: Number,
     category: String,
     comment: String
   }

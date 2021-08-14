@@ -1,12 +1,13 @@
 <template>
-  <label v-if="label" :for="id">{{ label }}</label>
-  <input
-    v-bind="$attrs"
-    :value="modelValue"
-    :placeholder="label"
-    @input="$emit('update:modelValue', $event.target.value)"
-    class="field"
-  />
+  <label v-if="label">{{ label }}
+    <input
+      v-bind="$attrs"
+      :value="modelValue"
+      :placeholder="label"
+      @input="$emit('update:modelValue', $event.target.value)"
+      class="field"
+    />
+  </label>
 </template>
 
 <script>

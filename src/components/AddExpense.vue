@@ -35,11 +35,11 @@ export default {
   props: {
     categories: Array
   },
-  data() {
+  data () {
     return {
       expense: {
-        category: '',
-        amount: 0,
+        category: this.categories[0],
+        amount: 100,
         comment: ''
       }
     }
